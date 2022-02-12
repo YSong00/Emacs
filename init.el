@@ -32,4 +32,4 @@
 (color-theme-subtle-hacker)
 
 ;; Font
-(set-default-font "-outline-consolas-normal-r-normal-normal-14-97-96-96-c-*-iso8859-1")
+(set-frame-font "-outline-consolas-normal-r-normal-normal-14-97-96-96-c-*-iso8859-1")
