@@ -11,6 +11,27 @@
   :config
   (which-key-mode))
 
+(use-package counsel
+  :ensure t)
+(use-package ivy
+  :ensure t
+  :init
+  (ivy-mode 1)
+  (counsel-mode 1)
+  :config
+  (setq ivy-use-virtual-buffers t)
+  (setq search-default-mode #'char-fold-to-regexp)
+  (setq ivy-count-format "(%d/%d) ")
+  :bind
+  (("C-x b" . 'ivy-switch-buffer)
+   ("C-x C-f" . 'counsel-find-file)
+   :map minibuffer-local-map
+   ("C-r" . counsel-minibuffer-history)))
+
+(use-package avy
+  :ensure t
+  :bind
+  (("C-j C-w" . avy-goto-char-2)))
 
 
 

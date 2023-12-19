@@ -23,3 +23,7 @@
 
 ;; Font
 (set-frame-font "-outline-consolas-normal-r-normal-normal-14-97-96-96-c-*-iso8859-1")
+
+
+;; Clear Key Map
+(global-set-key (kbd "C-j") nil)
