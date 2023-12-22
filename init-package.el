@@ -1,3 +1,4 @@
+;;; package
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
@@ -7,6 +8,10 @@
 
 (eval-when-compile (require 'use-package))
 
+
+
+
+;;; common
 (use-package which-key
   :config
   (which-key-mode))
@@ -31,7 +36,31 @@
 (use-package avy
   :ensure t
   :bind
-  (("C-j C-w" . avy-goto-char-2)))
+  (("C-j w" . avy-goto-char)))
+
+
+
+
+;;; program
+(use-package company
+  :ensure t
+  :init
+  (global-company-mode)
+  :config
+  (setq company-minimum-prefix-length 1)
+  (setq company-tooltip-align-annotations t)
+  (setq company-idle-delay 0.0)
+  (setq company-show-quick-access t)
+  (setq company-selection-wrap-around t)
+  (setq company-transformers '(company-sort-by-occurrence)))
+
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode))
+
+(use-package flycheck-clang-tidy
+  :ensure t)
 
 
 
@@ -51,10 +80,13 @@
 
 ;;; lsp-mode
 (use-package lsp-mode
-    :init (setq lsp-keymap-prefix "C-c l")
+    :init
     :hook ((c++-mode . lsp)
           (lsp-mode . lsp-enable-which-key-integration))
-    :commands lsp)
+    :commands lsp
+    :bind
+    (("C-j d" . lsp-find-definition)
+     ("C-j i" . lsp-find-implementation)))
 (use-package lsp-ui
     :commands lsp-ui-mode)
 (use-package lsp-ivy
@@ -67,7 +99,7 @@
 
 ;;; dap-mode
 (use-package dap-mode)
-(use-package dap-lldb 
+(use-package dap-lldb
     :after dap-mode
     :custom (dap-lldb-debug-program '("E:/Program Files/LLVM/bin/lldb-vscode")))
 
